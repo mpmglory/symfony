@@ -1,0 +1,7 @@
+pmm_core:
+    resource: "@PMMCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
+pmm_platform:
+    resource: "@PMMPlatformBundle/Resources/config/routing.yml"
+    prefix:   /

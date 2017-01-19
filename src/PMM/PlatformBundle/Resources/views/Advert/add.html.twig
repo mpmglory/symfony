@@ -1,0 +1,27 @@
+{# \src\PMM\PlatformBundle\Resources\views\Advert\add.html.twig
+Le template d'ajout d'une annonces des annonces (couche 3) #}
+
+{% extends "PMMPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+	Ajouter une annonce - {{ parent() }}
+{% endblock %}
+
+{% block pmmplatform_body %}
+	
+	<h2>Ajouter une annonce</h2>
+	
+	{{ include("PMMPlatformBundle:Advert:form.html.twig") }}
+	
+	<p>
+		Vous etes sur le point d'ajouter une nouvelle annonce.
+		Soyez explicite mais precis et concis.
+	</p>
+	
+	
+	<p>
+		Cette annonce sera ajoutee directement
+		sur la page d'accueil apres validation.
+	</p>
+	
+{% endblock %}

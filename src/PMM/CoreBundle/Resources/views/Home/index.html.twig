@@ -1,0 +1,24 @@
+{# \src\PMM\CoreBundle\Resources\views\Home\index.html.twig
+Le template de la page d'accueil generale du projet PMM (couche 3) #}
+
+{% extends "PMMCoreBundle::layout.html.twig" %}
+
+{% block title %}
+	Accueil - {{ parent() }}
+{% endblock %}
+
+{% block title2 %}Plateforme de creation d'emplois{% endblock %}
+
+{% block body %}
+
+	{% for message in app.session.flashbag.get('info') %}
+		<div class="alert alert-info">Message flash: {{ message }} </div>
+	{% endfor %}
+	
+	<h3>Les dernieres annonces</h3>
+	
+	{{ render(controller("PMMPlatformBundle:Advert:menu", { 'limit': 3 })) }}
+	
+	<h3>Derniers messages sur le forum</h3>
+	
+{% endblock %}

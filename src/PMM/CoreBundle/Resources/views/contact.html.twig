@@ -1,0 +1,25 @@
+{# \src\PMM\CoreBundle\Resources\views\contact.html.twig
+Le template de la page de contact du projet PMM (couche 3) #}
+
+{% extends "PMMCoreBundle::layout.html.twig" %}
+
+{% block title %}
+	Contact - {{ parent() }}
+{% endblock %}
+
+{% block title2 %}Plateforme de creation d'emplois{% endblock %}
+
+{% block body %}
+	
+<div class="well">
+		<h3>Page de contact pas encore disponible. 
+		Merci de reessayer plus tard.</h3>
+</div>
+
+<div>
+	{% for message in app.session.flashbag.get('info') %}
+		<p>Message flash: {{ message }} </p>
+	{% endfor %}
+</div>
+	
+{% endblock %}

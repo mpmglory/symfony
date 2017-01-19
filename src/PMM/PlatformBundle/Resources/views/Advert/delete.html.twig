@@ -1,0 +1,26 @@
+{# \src\PMM\PlatformBundle\Resources\views\Advert\delete.html.twig
+Le template de suppression d'une annonce (couche 3) #}
+
+{% extends "PMMPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+	Suppression - {{ parent() }}
+{% endblock %}
+
+{% block pmmplatform_body %}
+	
+	<h2>Suppression d'une annonce</h2>
+	<div class="well">
+	Voulez-vous vraiment supprimer l'annonce <i> {{ advert.title }} </i>? 
+		<br /> bah je pense que <strong>non!</strong>
+	</div>
+	<a href="{{ path('pmm_platform_view', {'id': advert.id}) }}" class="btn btn-default">
+			<i class="glyphicon glyphicon-chevron-left"></i>
+			Retour a l'annonce
+		</a>
+		<a href="{{ path('pmm_platform_home') }}" class="btn btn-default">
+			<i class="glyphicon glyphicon-chevron-right"></i>
+			Aller a la page d'acceuil de la plateforme 
+		</a>
+
+{% endblock %}

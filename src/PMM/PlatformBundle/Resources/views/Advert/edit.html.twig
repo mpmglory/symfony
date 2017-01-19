@@ -1,0 +1,28 @@
+{# \src\PMM\PlatformBundle\Resources\views\Advert\edit.html.twig
+Le template de modification des annonces des annonces (couche 3) #}
+
+{% extends "PMMPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+	Modifier une annonce - {{ parent() }}
+{% endblock %}
+
+{% block pmmplatform_body %}
+	
+	<h2>Modifier une annonce</h2>
+	
+	{{ include("PMMPlatformBundle:Advert:form.html.twig") }}
+	
+	<p>
+		Vous editez une annonce deja existante, merci de ne pas modifier 
+		l'idee generale de l'annonce deja publiee.
+	</p>
+	
+	<p>
+		<a href="{{ path('pmm_platform_view', {'id': advert.id}) }}" class="btn btn-default">
+		<i class="glyphicon glyphicon-chevron-left"></i>
+		Retour a l'annonce
+		</a>
+	</p>
+	
+{% endblock %}

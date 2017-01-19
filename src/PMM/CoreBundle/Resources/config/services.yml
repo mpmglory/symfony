@@ -1,0 +1,4 @@
+services:
+#    pmm_core.example:
+#        class: PMM\CoreBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

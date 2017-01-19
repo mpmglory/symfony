@@ -1,0 +1,40 @@
+#src/PMM/PlatformBundle/Resources/config/routing.yml
+
+pmm_platform_home:
+    path:    /platform/{page}
+    defaults:
+        _controller: PMMPlatformBundle:Advert:index
+        page: 1
+    requirements:
+        page: \d*
+
+pmm_platform_view:
+    path:    /platform/advert/{id}
+    defaults:
+        _controller: PMMPlatformBundle:Advert:view
+    requirements:
+        id: \d+
+
+pmm_platform_add:
+    path:    /platform/add
+    defaults:
+        _controller: PMMPlatformBundle:Advert:add
+
+pmm_platform_edit:
+    path:    /platform/edit/{id}
+    defaults:
+        _controller: PMMPlatformBundle:Advert:edit
+    requirements:
+        id: \d+
+
+pmm_platform_delete:
+    path: /platform/delete/{id}
+    defaults:
+        _controller: PMMPlatformBundle:Advert:delete
+    requirements:
+        id: \d+
+        
+pmm_platform_test:
+    path:    /platform/test
+    defaults:
+        _controller: PMMPlatformBundle:Advert:test

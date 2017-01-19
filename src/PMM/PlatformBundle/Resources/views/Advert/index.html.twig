@@ -1,0 +1,35 @@
+{# \src\PMM\PlatformBundle\Resources\views\Advert\index.html.twig
+Le layout d'accueil pour l'affichage de toutes les annonces (couche 3) #}
+
+{% extends "PMMPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+	Plateforme - {{ parent() }}
+{% endblock %}
+
+{% block pmmplatform_body %}
+	
+	<h2>Liste des annonces</h2>
+	
+	<ul>
+	{% for advert in listAdverts %}
+		<li>
+			<a href="{{ path('pmm_platform_view', {'id': advert.id}) }}">
+				{{ advert.title }}
+			</a>
+			par {{ advert.author }}, 
+			le {{ advert.date|date('d/m/Y') }}
+		</li>
+	{% else %}
+		<li>Pas encore d'annonces</li>
+	{% endfor %}
+	</ul>
+	
+	{# <ul class="pagination">	
+		{% for p in range(1, nbPage) %}
+			<li{% if p == page %} class="active" {% endif %}
+				<a href="{{ path('pmm_platform_home', {'page': p}) }}">Page {{p}}</a>
+		{% endfor %}
+	</ul> #}
+
+{% endblock %}
