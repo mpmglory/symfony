@@ -10,11 +10,6 @@ Le layout du bundle PlatformBundle (couche 2) #}
 {% block title2 %}Publication des annonces {{ parent() }}
 {% endblock %}
 
-{% block lastadverts %}	
-		<h3>Les dernieres annonces</h3>			
-		{{ render(controller("PMMPlatformBundle:Advert:menu")) }}
-{% endblock %}
-
 {% block body %}
 	
 	{% block pmmplatform_body %}

@@ -23,7 +23,7 @@ class AdvertController extends Controller{
 		}
 	
 
-		$nbPerPage = 4;
+		$nbPerPage = 3;
 		
 		$list = $this->getDoctrine()
 			->getManager()
@@ -70,7 +70,7 @@ class AdvertController extends Controller{
 		return $this->render('PMMPlatformBundle:Advert:view.html.twig', array(
 			'advert' => $myadvert,
 			'listApplications' => $listApply,
-			'listAdvSkills' => $listAdvSkills,
+			'listAdvertSkills' => $listAdvSkills,
 		));
 	}
 	
