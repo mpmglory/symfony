@@ -148,5 +148,5 @@ class AdvertController extends Controller{
 			'listAdverts' => $listAdverts
 		));
 	}
-*/
+
 }
