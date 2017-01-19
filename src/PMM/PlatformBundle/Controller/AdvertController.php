@@ -129,7 +129,7 @@ class AdvertController extends Controller{
 		//$em->persist($advert);
 		$em->flush();
 					
-		return $this->render('PMMPlatformBundle:Advert:delete.html.twig'));
+		return $this->render('PMMPlatformBundle:Advert:delete.html.twig');
 	}
 	
 	public function menuAction($limit){
