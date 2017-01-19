@@ -19,20 +19,11 @@ class AdvertController extends Controller{
     public function indexAction($page){
 			
 		if($page < 1){
-			throw new NotFoundException("Page " .$page. " inexistante.")
+			throw new NotFoundException("Page " .$page. " inexistante.");
 		}
-		
-		//code avant la methode getAdverts() dans le advertRepository 
-		$list = $this->getDoctrine()
-			->getManager()
-			->getRepository('PMMPlatformBundle:Advert')
-			->findAll();
-		
-		return $this->render('PMMPlatformBundle:Advert:index.html.twig', array(
-		'listAdverts' => $list
-		));
+	
 
-		/*$nbPerPage = 4;
+		$nbPerPage = 4;
 		
 		$list = $this->getDoctrine()
 			->getManager()
@@ -49,10 +40,10 @@ class AdvertController extends Controller{
 		'listAdverts' => $list,
 		'page' => $page,
 		'nbPage' => $nbPage,
-		));*/
+		));
 	}
 	 
-	/*public function viewAction($id){
+	public function viewAction($id){
 		
 		$em = $this->getDoctrine()->getManager();
 		
