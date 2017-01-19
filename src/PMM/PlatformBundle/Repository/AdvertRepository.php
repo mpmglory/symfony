@@ -14,7 +14,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  */
 class AdvertRepository extends \Doctrine\ORM\EntityRepository
 {
-	/*public function getAdverts($page, $nbPerPage){
+	public function getAdverts($page, $nbPerPage){
 		
 		$qb = $this->createQueryBuilder('a')
 			->innerJoin('a.image', 'i')
@@ -79,5 +79,5 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
 		  ->andWhere('a.date BETWEEN :start AND :end')
 		  ->setParameter('start', new \Datetime(date('Y') . '-01-01'))
 		  ->setParameter('end', new \Datetime(date('Y') . '-12-31'));
-  }*/
+  }
 }
