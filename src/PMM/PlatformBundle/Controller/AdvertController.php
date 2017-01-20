@@ -149,4 +149,16 @@ class AdvertController extends Controller{
 		));
 	}
 
+	public function purgeAction($date){
+		
+		$em = $this->getDoctrine()->getManager();
+		$listAdverts = $em
+			->getRepository('PMMPlatformBundle:Advert')
+			->findAll();
+
+		return $this->render('PMMPlatformBundle:Advert:menu.html.twig', array(
+			'listAdverts' => $listAdverts
+		));
+	}
+
 }

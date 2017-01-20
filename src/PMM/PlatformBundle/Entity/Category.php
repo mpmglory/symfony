@@ -5,7 +5,10 @@ namespace PMM\PlatformBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * Category
+ *
+ * @ORM\Table(name="category")
+ * @ORM\Entity(repositoryClass="PMM\PlatformBundle\Repository\CategoryRepository")
  */
 class Category
 {

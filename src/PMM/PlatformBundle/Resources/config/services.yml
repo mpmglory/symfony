@@ -2,7 +2,7 @@
 
 services:
     pmm_platform.antispam:
-        class: PMM\PlatformBundle\Antispam\PMMAntispam
+        class: PMM\PlatformBundle\PMMAntispam\PMMAntispam
         arguments:
             - "@mailer"
             - %locale%
@@ -21,3 +21,7 @@ services:
             - "@pmm_platform.email.application_mailer"
         tags:
             - { name: doctrine.event_listener, event: postPersist }
+
+services:
+    pmm_platform.purger.advert:
+        class: PMM\PlatformBundle\PMMPurger\PMMPurger

@@ -29,6 +29,17 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
 		
 		return new Paginator($qb, true);
 	}
+
+	/*public function getOldAdverts($oldOf){
+		
+		$qb = $this->createQueryBuilder('a')
+		  ->where('a.updateAt < ')
+		  ->getQuery();
+		  $results = $qb->getResult();
+
+		  return $results;
+
+  	}*/
 	
 	public function myFindAll(){
     
@@ -79,5 +90,6 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
 		  ->andWhere('a.date BETWEEN :start AND :end')
 		  ->setParameter('start', new \Datetime(date('Y') . '-01-01'))
 		  ->setParameter('end', new \Datetime(date('Y') . '-12-31'));
-  }
+  	}
+
 }
