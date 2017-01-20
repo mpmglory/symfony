@@ -32,7 +32,6 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
 
 	public function getOldAdverts($oldOf){
 		
-		//$oldOf = 6;
 		$end = new \DateTime('now');
 		$end->sub(new \DateInterval('P'.$oldOf.'D'));
 		
