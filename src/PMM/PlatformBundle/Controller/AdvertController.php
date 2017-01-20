@@ -149,15 +149,13 @@ class AdvertController extends Controller{
 		));
 	}
 
-	public function purgeAction(){
+	public function purgeAction($days){
 		
-		//$oldOf = 30;
-		//$endDate = new DateTime('now');
-		//$endDate->sub(new DateInterval('P'.$oldOf.'D'));
+		//$days = 7;
 
 		$oldAdverts = $this->getDoctrine()->getManager()
 			->getRepository('PMMPlatformBundle:Advert')
-			->getOldAdverts();
+			->getOldAdverts($days);
 
 		return $this->render('PMMPlatformBundle:Advert:purge.html.twig', array(
 			'listAdverts' => $oldAdverts

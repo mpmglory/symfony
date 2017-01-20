@@ -30,9 +30,9 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
 		return new Paginator($qb, true);
 	}
 
-	public function getOldAdverts(){
+	public function getOldAdverts($oldOf){
 		
-		$oldOf = 6;
+		//$oldOf = 6;
 		$end = new \DateTime('now');
 		$end->sub(new \DateInterval('P'.$oldOf.'D'));
 		

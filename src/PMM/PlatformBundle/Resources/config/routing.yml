@@ -35,6 +35,9 @@ pmm_platform_delete:
         id: \d+
 
 pmm_platform_purge:
-    path:    /platform/purge-old
+    path:    /platform/purge-old/{days}
     defaults:
         _controller: PMMPlatformBundle:Advert:purge
+        days: 6
+    requirements:
+        days: \d+
