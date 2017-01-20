@@ -30,16 +30,21 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
 		return new Paginator($qb, true);
 	}
 
-	/*public function getOldAdverts($oldOf){
+	public function getOldAdverts(){
 		
+		$oldOf = 6;
+		$end = new \DateTime('now');
+		$end->sub(new \DateInterval('P'.$oldOf.'D'));
+		
+
 		$qb = $this->createQueryBuilder('a')
-		  ->where('a.updateAt < ')
-		  ->getQuery();
-		  $results = $qb->getResult();
+			->where('a.updateAt < :endDate')
+		  	->setParameter('endDate', $end)
+		  	->orderBy('a.updateAt', 'DESC');
 
-		  return $results;
+		return $qb->getQuery()->getResult();
 
-  	}*/
+  	}
 	
 	public function myFindAll(){
     

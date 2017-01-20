@@ -149,15 +149,18 @@ class AdvertController extends Controller{
 		));
 	}
 
-	public function purgeAction($date){
+	public function purgeAction(){
 		
-		$em = $this->getDoctrine()->getManager();
-		$listAdverts = $em
-			->getRepository('PMMPlatformBundle:Advert')
-			->findAll();
+		//$oldOf = 30;
+		//$endDate = new DateTime('now');
+		//$endDate->sub(new DateInterval('P'.$oldOf.'D'));
 
-		return $this->render('PMMPlatformBundle:Advert:menu.html.twig', array(
-			'listAdverts' => $listAdverts
+		$oldAdverts = $this->getDoctrine()->getManager()
+			->getRepository('PMMPlatformBundle:Advert')
+			->getOldAdverts();
+
+		return $this->render('PMMPlatformBundle:Advert:purge.html.twig', array(
+			'listAdverts' => $oldAdverts
 		));
 	}
 

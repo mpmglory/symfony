@@ -33,8 +33,8 @@ pmm_platform_delete:
         _controller: PMMPlatformBundle:Advert:delete
     requirements:
         id: \d+
-        
-pmm_platform_test:
-    path:    /platform/test
+
+pmm_platform_purge:
+    path:    /platform/purge-old
     defaults:
-        _controller: PMMPlatformBundle:Advert:test
+        _controller: PMMPlatformBundle:Advert:purge
