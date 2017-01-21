@@ -1,11 +1,6 @@
 # src/PMM/PlatformBundle/Resources/config
 
 services:
-    pmm_platform.purger.advert:
-        class: PMM\PlatformBundle\Purger\PMMPurger
-        arguments:
-            -"@doctrine.orm.entity_manager"
-
     pmm_platform.antispam:
         class: PMM\PlatformBundle\PMMAntispam\PMMAntispam
         arguments:
@@ -24,3 +19,8 @@ services:
             - "@pmm_platform.email.application_mailer"
         tags:
             - { name: doctrine.event_listener, event: postPersist }
+
+    pmm_platform.purger.advert:
+        class: PMM\PlatformBundle\PurgerAdvert\PMMPurgerAdvert
+        arguments:
+            - "@doctrine.orm.entity_manager"

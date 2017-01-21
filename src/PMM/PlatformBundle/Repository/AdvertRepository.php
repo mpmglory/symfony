@@ -32,15 +32,15 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
 
 	public function getOldAdverts($oldOf){
 		
-		//$end = new \DateTime('now');
-		//$end->sub(new \DateInterval('P'.$oldOf.'D'));
-		$end = new \DateTime($oldOf. 'days ago')
+		$end = new \DateTime('now');
+		$end->sub(new \DateInterval('P'.$oldOf.'D'));
+		//$end = new \DateTime($oldOf. 'days ago')
 		
 
 		$qb = $this->createQueryBuilder('a')
 			->where('a.updateAt < :endDate')
 			->orWhere('a.updateAt IS NULL AND a.date < :endDate')
-			->andWhere('a.pplications IS EMPTY')
+			->andWhere('a.applications IS EMPTY')
 		  	->setParameter('endDate', $end);
 
 		$results = $qb->getQuery()->getResult();

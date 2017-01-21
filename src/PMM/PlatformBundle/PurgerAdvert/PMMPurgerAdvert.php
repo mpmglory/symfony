@@ -1,15 +1,18 @@
 <?php
 // src/PMM/PlatformBundle/PMMPurger/PMMPurgerAdvert.php
 
-namespace PMM\PlatformBundle\Purger;
+namespace PMM\PlatformBundle\PurgerAdvert;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityManager;
 
 class PMMPurgerAdvert{
 
-	protected $em;
+	/**
+	* @var EntityManagerInterface
+	*/
+	private $em;
 
-	public function __construct(EntityManagerInterface $eman){
+	public function __construct(EntityManager $eman){
 
 		$this->em = $eman;
 	}
