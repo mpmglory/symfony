@@ -17,6 +17,9 @@ Le template pour l'affichage des annonces (couche 3) #}
 	
 	<h2>{{ advert.title }}</h2>
 	<i> Par {{ advert.author }}, le  {{ advert.date|date('d/m/Y') }}</i>
+	<div class="well">
+		<p>{{ advert.content }}</p>
+	</div>
 	
 	{% if not advert.categories.empty %}
     <p>
@@ -25,26 +28,19 @@ Le template pour l'affichage des annonces (couche 3) #}
         {{ category.name }}{% if not loop.last %}, {% endif %}
       {% endfor %}
     </p>
-  {% endif %}
+	  {% endif %}
 
-  {% if listAdvertSkills|length > 0 %}
-    <div>
-      Cette annonce requiert les compétences suivantes :
-      <ul>
-        {% for advertSkill in listAdvertSkills %}
-          <li>{{ advertSkill.skill.name }} : niveau {{ advertSkill.level }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
+	  {% if listAdvertSkills|length > 0 %}
+	    <div>
+	      Cette annonce requiert les compétences suivantes :
+	      <ul>
+	        {% for advertSkill in listAdvertSkills %}
+	          <li>{{ advertSkill.skill.name }} : niveau {{ advertSkill.level }}</li>
+	        {% endfor %}
+	      </ul>
+	    </div>
+	  {% endif %}
 	
-	<div class="well">
-		<h4>Liste des applications a l'annonce</h4>
-		{% for apply in listApplications %}
-			<ul><li>{{ apply.author }}</li></ul>
-			<p>{{ apply.content }}</p>
-				{% endfor  %}
-	</div>
 	
 	<p>
 		<a href="{{ path('pmm_platform_home') }}" class="btn btn-default">
