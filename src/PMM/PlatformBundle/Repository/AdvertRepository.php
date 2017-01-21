@@ -23,9 +23,9 @@ class AdvertRepository extends \Doctrine\ORM\EntityRepository
 			->addSelect('c')
 			->orderBy('a.date', 'desc')
 			->getQuery();
-		
-		$qb->setFirstResult(($page-1)*$nbPerPage)
-			->setMaxResults($nbPerPage);
+
+			$qb->setFirstResult(($page-1) * $nbPerPage)
+				->setMaxResults($nbPerPage);
 		
 		return new Paginator($qb, true);
 	}

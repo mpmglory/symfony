@@ -30,12 +30,11 @@ class AdvertController extends Controller{
 			->getRepository('PMMPlatformBundle:Advert')
 			->getAdverts($page, $nbPerPage);
 			
-		//$nbPage = ceil(count($list)/$nbPerPage);
-		$nbPage = (count($list)/$nbPerPage);
+		$nbPage = ceil(count($list)/$nbPerPage);
 		
-		/*if($page > $nbPage){
+		if($page > $nbPage){
 			throw $this->createNotFoundException("Page " .$page. " inexistante. =METSAR=");
-		}*/
+		}
 		
 		return $this->render('PMMPlatformBundle:Advert:index.html.twig', array(
 		'listAdverts' => $list,
