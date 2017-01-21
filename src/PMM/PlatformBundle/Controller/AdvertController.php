@@ -77,7 +77,57 @@ class AdvertController extends Controller{
 	public function addAction(Request $request){
 		
 		$em = $this->getDoctrine()->getManager();
-				
+		//***********
+/*
+    // Création de l'entité
+    $advert = new Advert();
+    $advert->setTitle('Recherche développeur Symfony.');
+    $advert->setAuthor('Alexandre');
+    $advert->setContent("Nous recherchons un développeur Symfony débutant sur Lyon. Blabla…");
+    // Création de l'entité Image
+    $image = new Image();
+    $image->setUrl('http://sdz-upload.s3.amazonaws.com/prod/upload/job-de-reve.jpg');
+    $image->setAlt('Job de rêve');
+    // On lie l'image à l'annonce
+    $advert->setImage($image);
+    // Création d'une première candidature
+    $application1 = new Application();
+    $application1->setAuthor('Marine');
+    $application1->setContent("J'ai toutes les qualités requises.");
+    // Création d'une deuxième candidature par exemple
+    $application2 = new Application();
+    $application2->setAuthor('Pierre');
+    $application2->setContent("Je suis très motivé.");
+    // On lie les candidatures à l'annonce
+    $application1->setAdvert($advert);
+    $application2->setAdvert($advert);
+    // On récupère toutes les compétences possibles
+    $listSkills = $em->getRepository('PMMPlatformBundle:Skill')->findAll();
+    // Pour chaque compétence
+    foreach ($listSkills as $skill) {
+      // On crée une nouvelle « relation entre 1 annonce et 1 compétence »
+      $advertSkill = new AdvertSkill();
+      // On la lie à l'annonce, qui est ici toujours la même
+      $advertSkill->setAdvert($advert);
+      // On la lie à la compétence, qui change ici dans la boucle foreach
+      $advertSkill->setSkill($skill);
+      // Arbitrairement, on dit que chaque compétence est requise au niveau 'Expert'
+      $advertSkill->setLevel('Expert');
+      // Et bien sûr, on persiste cette entité de relation, propriétaire des deux autres relations
+      $em->persist($advertSkill);
+    }
+    // Étape 1 : On « persiste » l'entité
+    $em->persist($advert);
+    // Étape 1 bis : si on n'avait pas défini le cascade={"persist"},
+    // on devrait persister à la main l'entité $image
+    // $em->persist($image);
+    // Étape 1 ter : pour cette relation pas de cascade lorsqu'on persiste Advert, car la relation est
+    // définie dans l'entité Application et non Advert. On doit donc tout persister à la main ici.
+    $em->persist($application1);
+    $em->persist($application2);
+    // Étape 2 : On « flush » tout ce qui a été persisté avant
+    $em->flush();*/
+		//****************		
 		if($request->isMethod('POST')){
 			$request->getSession()->getFlashBag()
 			->add('notice', 'Annonce bien enregistree.');
@@ -93,6 +143,10 @@ class AdvertController extends Controller{
 		$em = $this->getDoctrine()->getManager();
 		
 		$myadvert = $em->getRepository('PMMPlatformBundle:Advert')->find($id);
+
+		$myadvert->setAuthor("MM PLATA");
+		$em->persist($myadvert);
+		$em->flush();
 		
 		if (null === $myadvert){
 			throw new NotFoundHttpException("Annonce d'id" .$id. " introuvable.");
@@ -150,14 +204,11 @@ class AdvertController extends Controller{
 	}
 
 	public function purgeAction($days){
-		
-		$em = $this->getDoctrine()->getManager();
-		$oldAdverts = $em->getRepository('PMMPlatformBundle:Advert')
-			->getOldAdverts($days);
+	
+		$pg = $this->container->get('pmm_platform.purger.advert');
+		$pg->purge($days);
 
-		return $this->render('PMMPlatformBundle:Advert:purge.html.twig', array(
-			'listAdverts' => $oldAdverts
-		));
+		return $this->redirectToRoute('pmm_platform_home');
 	}
 
 }

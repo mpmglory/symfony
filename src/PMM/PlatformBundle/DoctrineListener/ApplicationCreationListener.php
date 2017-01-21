@@ -2,7 +2,7 @@
 
 namespace PMM\PlatformBundle\DoctrineListener;
 
-use Doctrine\Common\Persistense\Event\LifecycleEventArgs;
+use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use PMM\PlatformBundle\Email\ApplicationMailer;
 use PMM\PlatformBundle\Entity\Application;
 
