@@ -19,7 +19,7 @@ class AdvertController extends Controller{
     public function indexAction($page){
 			
 		if($page < 1){
-			throw new NotFoundException("Page " .$page. " inexistante.");
+			throw new NotFoundException("Page " .$page. " inexistante. =PLATA=");
 		}
 	
 
@@ -30,11 +30,12 @@ class AdvertController extends Controller{
 			->getRepository('PMMPlatformBundle:Advert')
 			->getAdverts($page, $nbPerPage);
 			
-		$nbPage = ceil(count($list)/$nbPerPage);
+		//$nbPage = ceil(count($list)/$nbPerPage);
+		$nbPage = (count($list)/$nbPerPage);
 		
-		if($page > $nbPage){
-			throw $this->createNotFoundException("Page " .$page. " inexistante.");
-		}
+		/*if($page > $nbPage){
+			throw $this->createNotFoundException("Page " .$page. " inexistante. =METSAR=");
+		}*/
 		
 		return $this->render('PMMPlatformBundle:Advert:index.html.twig', array(
 		'listAdverts' => $list,
