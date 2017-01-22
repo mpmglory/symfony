@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use PMM\PlatformBundle\Form\AdvertType;
+use PMM\PlatformBundle\Form\AdvertEditType;
 
 class AdvertController extends Controller{
 
@@ -107,27 +108,32 @@ class AdvertController extends Controller{
 		
 		$em = $this->getDoctrine()->getManager();
 		
-		$myadvert = $em->getRepository('PMMPlatformBundle:Advert')->find($id);
+		$advert = $em->getRepository('PMMPlatformBundle:Advert')->find($id);
 
-		$myadvert->setAuthor("MM PLATA");
-		$em->persist($myadvert);
-		$em->flush();
-		
-		if (null === $myadvert){
-			throw new NotFoundHttpException("Annonce d'id" .$id. " introuvable.");
-		}
-		
+		$form = $this->createForm(AdvertEditType::class, $advert);
+			
 		if($request->isMethod('POST')){
 			
-			$request->getSession()->getFlashBag()
-				->add('notice', 'Annonce bien modifiee.');
-			
-			return $this->redirectToRoute('pmm_platform_view', array('id' => $myadvert->getId()));
-		}
+			$form->handleRequest($request);
+
+			if ($form->isValid()){
+
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($advert);
+				$em->flush();
+
+				$request->getSession()->getFlashBag()
+					->add('notice', 'Annonce bien modifiee.');
 		
+					return $this->redirectToRoute('pmm_platform_view', array(
+						'id' => $advert->getId()));
+			}
+		}
+	
 		return $this->render('PMMPlatformBundle:Advert:edit.html.twig', array(
-			'advert' => $myadvert
-		));
+					'form' => $form->createView(),
+					'advert' => $advert
+				));
 	}
 	
 	public function deleteAction($id){
