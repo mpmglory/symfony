@@ -81,22 +81,17 @@ class AdvertController extends Controller{
 
 		$form = $this->get('form.factory')->create(AdvertType::class, $advert);
 			
-		if($request->isMethod('POST')){
-			
-			$form->handleRequest($request);
+		if($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
 
-			if ($form->isValid()){
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($advert);
+			$em->flush();
 
-				$em = $this->getDoctrine()->getManager();
-				$em->persist($advert);
-				$em->flush();
-
-				$request->getSession()->getFlashBag()
+			$request->getSession()->getFlashBag()
 					->add('notice', 'Annonce bien enregistree.');
 		
-					return $this->redirectToRoute('pmm_platform_view', array(
+			return $this->redirectToRoute('pmm_platform_view', array(
 						'id' => $advert->getId()));
-			}
 		}
 	
 		return $this->render('PMMPlatformBundle:Advert:add.html.twig', array(
@@ -143,7 +138,7 @@ class AdvertController extends Controller{
 			->getRepository('PMMPlatformBundle:Advert')
 			->find($id);
 			
-		if (null === $myadvert){
+		if (null === $advert){
 			throw new NotFoundHttpException("Annonce d'id" .$id. " inexistante.");
 		}
 			
@@ -151,6 +146,7 @@ class AdvertController extends Controller{
 			$advert->removeCategory($category);
 		}
 		
+		$em->remove($advert);
 		//$em->persist($advert);
 		$em->flush();
 					

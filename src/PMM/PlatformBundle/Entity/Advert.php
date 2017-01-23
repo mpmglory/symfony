@@ -70,7 +70,7 @@ class Advert
     private $nbreApplications = 0;
 	
 	/**
-     * @ORM\ManyToMany(targetEntity="PMM\PlatformBundle\Entity\Category", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="PMM\PlatformBundle\Entity\Category", cascade={"persist", "remove"})
      * @ORM\JoinTable(name="advert_category")
 	 */
     private $categories;
