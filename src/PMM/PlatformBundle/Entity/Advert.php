@@ -76,7 +76,7 @@ class Advert
     private $categories;
 	
 	/**
-     * @ORM\OneToOne(targetEntity="PMM\PlatformBundle\Entity\Image", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="PMM\PlatformBundle\Entity\Image", cascade={"persist", "remove"})
      */
     private $image;
 	
@@ -87,7 +87,7 @@ class Advert
 	private $slug;
 	
 	/**
-     * @ORM\OneToMany(targetEntity="PMM\PlatformBundle\Entity\Application", mappedBy="advert")
+     * @ORM\OneToMany(targetEntity="PMM\PlatformBundle\Entity\Application", mappedBy="advert", cascade={"persist", "remove"})
      */
     private $applications;
 	

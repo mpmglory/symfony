@@ -147,10 +147,14 @@ class AdvertController extends Controller{
 		}
 		
 		$em->remove($advert);
-		//$em->persist($advert);
 		$em->flush();
+
+		/*$request->getSession()->getFlashBag()
+					->add('notice', 'Advert'.$oldId.'deleted succesfully.');*/
+		
+		return $this->redirectToRoute('pmm_home');
 					
-		return $this->render('PMMPlatformBundle:Advert:delete.html.twig');
+		//return $this->render('PMMPlatformBundle:Advert:delete.html.twig');
 	}
 	
 	public function menuAction($limit){

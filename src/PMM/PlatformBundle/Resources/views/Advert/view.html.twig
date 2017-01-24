@@ -11,7 +11,7 @@ Le template pour l'affichage des annonces (couche 3) #}
 	
 	<div style="float: left; margin-right: 1em;">
 	{% if advert.image is not null %}
-		<img src="{{ asset(advert.image.uploadDir ~ '/' ~ advert.image.id ~ '.' ~ advert.image.url)}}"
+		<img src="{{ asset(advert.image.webPath) }}"
 			 alt="{{ advert.image.alt }}" height="80">
 	{% endif %}
 	</div>
