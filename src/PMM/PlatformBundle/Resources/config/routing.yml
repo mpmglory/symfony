@@ -41,3 +41,9 @@ pmm_platform_purge:
         days: 6
     requirements:
         days: \d+
+
+pmm_platform_test:
+    path:    /platform/test
+    defaults:
+        _controller: PMMPlatformBundle:Advert:test
+

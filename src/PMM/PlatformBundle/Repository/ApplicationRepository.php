@@ -23,4 +23,9 @@ class ApplicationRepository extends \Doctrine\ORM\EntityRepository
 		
 		return $qb->getQuery()->getResult();
 	}
+
+	public function isFlood(){
+
+		return false;
+	}
 }

@@ -18,6 +18,8 @@ class AppKernel extends Kernel
             new PMM\PlatformBundle\PMMPlatformBundle(),
             new PMM\CoreBundle\PMMCoreBundle(),
 			new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new PMM\UserBundle\PMMUserBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

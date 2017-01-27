@@ -24,3 +24,9 @@ services:
         class: PMM\PlatformBundle\PurgerAdvert\PMMPurgerAdvert
         arguments:
             - "@doctrine.orm.entity_manager"
+
+    pmm_platform.validator.antiflood:
+        class: PMM\PlatformBundle\Validator\AntifloodValidator
+        arguments: ["@request_stack", "@doctrine.orm.entity_manager"]
+        tags:
+            - { name: validator.constraint_validator, alias: pmm_platform_antiflood}

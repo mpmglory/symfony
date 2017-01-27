@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use PMM\PlatformBundle\Form\AdvertType;
 use PMM\PlatformBundle\Form\AdvertEditType;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class AdvertController extends Controller{
 
@@ -75,7 +77,15 @@ class AdvertController extends Controller{
 		));
 	}
 	
+	/**
+	* @Security("has_role('ROLE_AUTEUR')")
+	*/
 	public function addAction(Request $request){
+
+		/*if(!$this->get('security.authorization_checker')->isGranted('ROLE_AUTEUR')){
+
+			throw new AccessDeniedException('mPm says that Access limited to authors.');
+		}*/
 
 		$advert = new Advert();
 
@@ -180,6 +190,24 @@ class AdvertController extends Controller{
 		$pg->purge($days);
 
 		return $this->redirectToRoute('pmm_platform_home');
+	}
+
+	public function testAction(){
+	
+		$advert = new Advert();
+		$advert->setTitle("Recherche d'un programmeur systeme");
+		$advert->setAuthor("MP");
+		$advert->setContent("MPM");
+
+		$validator = $this->get('validator');
+
+		$listErrors = $validator->validate($advert);
+
+		if(count($listErrors) > 0){
+			return new Response((string)$listErrors);
+		}else{
+			return new Response("L'annonce est valide");
+		}
 	}
 
 }

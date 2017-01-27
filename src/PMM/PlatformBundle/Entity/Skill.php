@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Skill
  *
- * @ORM\Table(name="skill")
+ * @ORM\Table(name="pmm_skill")
  * @ORM\Entity(repositoryClass="PMM\PlatformBundle\Repository\SkillRepository")
  */
 class Skill

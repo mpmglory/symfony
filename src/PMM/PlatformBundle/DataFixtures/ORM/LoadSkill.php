@@ -5,9 +5,8 @@ namespace PMM\PlatformBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use PMM\PlatformBundle\Entity\Skill;
-use PMM\PlatformBundle\Entity\Category;
 
-class LoadCategory implements FixtureInterface
+class LoadSkill implements FixtureInterface
 {
     public function load(ObjectManager $manager){
 		

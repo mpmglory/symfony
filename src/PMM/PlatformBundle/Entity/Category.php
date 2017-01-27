@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Category
  *
- * @ORM\Table(name="category")
+ * @ORM\Table(name="pmm_category")
  * @ORM\Entity(repositoryClass="PMM\PlatformBundle\Repository\CategoryRepository")
  */
 class Category
