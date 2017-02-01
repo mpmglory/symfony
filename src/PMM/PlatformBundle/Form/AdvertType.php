@@ -27,7 +27,7 @@ class AdvertType extends AbstractType
         $builder->add('date', DateType::class)
             ->add('title', TextType::class)
             ->add('author', TextType::class)
-            ->add('content', TextareaType::class)
+            ->add('content', CkeditorType::class)
             ->add('image', ImageType::class)
             ->add('categories', CollectionType::class, array(
                 'entry_type' => CategoryType::class,

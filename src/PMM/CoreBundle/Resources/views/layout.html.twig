@@ -27,7 +27,14 @@ Le layout general de la plateforme (couche 1) #}
 					Participer au MOOC >>					
 					</a>
 				</p>
-				<p>Bonjour {#{{ app.user.username }}#}</p>
+				<p>
+					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+						En ligne en tant que {{ app.user.username }}
+						<a href="{{ path('fos_user_security_logout') }}">Deconnexion</a>
+					{% else %}
+						<a href="{{ path('fos_user_security_login') }}">Connexion</a>
+					{% endif %}
+				</p>
 			</div>
 			
 			<div class="row">
@@ -46,15 +53,7 @@ Le layout general de la plateforme (couche 1) #}
 					
 				<h3>Les dernieres annonces</h3>			
 				{{ render(controller("PMMPlatformBundle:Advert:menu", {'limit': 3})) }}
-
-				<p>
-					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-						En ligne en tant que {{ app.user.username }}
-						<a href="{{ path('fos_user_security_logout') }}">Deconnexion</a>
-					{% else %}
-						<a href="{{ path('fos_user_security_login') }}">Connexion</a>
-					{% endif %}
-				</p>
+				
 				</div>
 				<div id="content" class="col-md-9">
 					{% block body %}

@@ -30,3 +30,15 @@ services:
         arguments: ["@request_stack", "@doctrine.orm.entity_manager"]
         tags:
             - { name: validator.constraint_validator, alias: pmm_platform_antiflood}
+
+    pmm_platform.twig.antispam_extension:
+        class: PMM\PlatformBundle\Twig\AntispamExtension
+        arguments:
+            - "@pmm_platform.antispam"
+        tags:
+            - { name: twig.extension }
+
+    pmm_platform.form.ckeditor:
+        class: PMM\PlatformBundle\Form\CkeditorType
+        tags:
+            - { name: form.type, alias: ckeditor }
